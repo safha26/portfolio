@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero-section min-vh-100 d-flex align-items-center">
+    <div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+        <h1 class="display-4 fw-bold mb-3">Hi, I am Shaik Jainul Safha</h1>
+        <p class="lead mb-4">
+            Motivated professional transitioning to software development with hands-on experience in Python, Django, and web technologies.
+        </p>
+    </div>
+    <div class="col-md-3 d-flex justify-content-center justify-content-md-end">
+        {% load static %}
+        <img src="{% static 'images/safha_photo.jpg' %}" alt="Shaik Jainul Safha" class="intro-photo">
+    </div>
+
+</div>
+
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">About Me</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <p class="lead text-center mb-4">
+                    Motivated professional transitioning to software development with hands-on experience
+                    in Python, Django, and web technologies. Strong foundation in project management
+                    and quick learner passionate about building scalable web applications.
+                </p>
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="h1 text-primary">{{ experience|length }}</div>
+                        <div>Projects</div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="h1 text-primary">{{ skills|length }}</div>
+                        <div>Skills</div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="h1 text-primary">{{ education|length }}</div>
+                        <div>Education</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certification Section -->
+<section id="certifications" class="py-5 bg-light">
+    <div class="container section-box">
+        <h2 class="text-center mb-5">Certifications</h2>
+        <div class="row justify-content-center">
+            {% for cert in certifications %}
+            <div class="col-md-6 col-lg-6 mb-4">
+                <div class="card shadow-sm h-100 p-3 text-center">
+                    <h5 class="fw-bold">{{ cert.title }}</h5>
+                    <p class="text-muted">{{ cert.issuer }}</p>
+
+                    {% if cert.issue_date %}
+                    <small class="text-primary">Issued: {{ cert.issue_date }}</small>
+                    {% endif %}
+
+                    {% if cert.certificate_link %}
+                    <div class="mt-3">
+                        <a href="{{ cert.certificate_link }}" target="_blank" class="btn btn-primary">
+                            View Certificate
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No certifications added yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Technical Skills</h2>
+        <div class="row">
+            {% for skill in skills %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="skill-card p-4 border rounded shadow-sm h-100">
+                    <h5 class="fw-bold">{{ skill.name }}</h5>
+                    <p>{{ skill.level }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">Skills will appear here once added via admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Projects</h2>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm project-card p-2">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        {% if project.technologies %}
+                        <p class="card-text">{{ project.technologies }}</p>
+                        {% endif %}
+                        <p class="card-text">{{ project.description }}</p>
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">View Project</a>
+                        {% endif %}
+                        {% if project.image %}
+                        <a href="{{ project.image }}" class="btn btn-primary" target="_blank">View Image</a>
+                        {% endif %}
+                        {% if project.live_link %}
+                        <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">View Live Demo</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">Projects will appear here once added via admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Work Experience</h2>
+        <div class="row">
+            {% for exp in experience %}
+            <div class="col-lg-6 mb-4">
+                <div class="card experience-card p-4 border rounded shadow-sm">
+                    <h5 class="fw-bold mb-2">{{ exp.role }}</h5>
+                    <h6 class="text-muted mb-3">{{ exp.company }}</h6>
+                    <small class="text-muted">{{ exp.start_date }} - {{ exp.end_date }}</small><br>
+                    <p>{{ exp.description }}</p>
+
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">Experience will appear here once added via admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Education</h2>
+        <div class="row justify-content-center">
+            {% for edu in education %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ edu.degree }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ edu.school }}</h6>
+                        <p class="card-text">
+                        {% if edu.start_year %}
+                        {{ edu.start_year }} to
+                        {% endif %} {{ edu.end_year }} | {{ edu.grade }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">Education details will appear here once added via admin panel.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="text-center mb-5">Get In Touch</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4">
+                        <i class="fas fa-envelope fa-3x mb-3 text-primary"></i>
+                        <h5>sjainulsafha@gmail.com</h5>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <i class="fas fa-phone fa-3x mb-3 text-primary"></i>
+                        <h5>+91 7845284242</h5>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
+                        <h5>Chennai, Tamil Nadu</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

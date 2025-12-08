@@ -1,0 +1,75 @@
+.nav-item {
+    padding: 25px;
+    margin: 10px;
+    font-size: 20px;
+
+}
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,');
+    pointer-events: none;
+}  /* Add this closing brace */
+
+.experience-card {
+    max-height: 250px;              /* visible height in normal state */
+    overflow: hidden;               /* hide extra text */
+    transition: max-height 0.4s ease;
+}
+.experience-card:hover {
+    max-height: 500px;              /* big enough to show full content */
+}
+.project-card {
+    max-height: 250px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+
+}
+
+.card-body{padding:20px;}
+.project-card:hover {
+    max-height: 300px;              /* big enough to show full content */
+}
+body{
+    font-family: 'Times New Roman', 'Serif';
+}
+
+.intro-photo {
+    width: 200px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.hero-section .row {
+    margin-top: 40px;
+}
+
+.hero-section .col-md-3 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .intro-photo {
+        margin-bottom: 1rem;
+    }
+}
+
+.section-box {
+    width: 1480px;
+}
+
+
